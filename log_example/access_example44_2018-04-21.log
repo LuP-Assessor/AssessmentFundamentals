@@ -1,0 +1,5 @@
+2018-04-21 00:07:38 127.0.0.1 Request for          index.php Successfull - 'sessionKey'='989184', 'ClientBrowser'='Mozilla/5.0 (Windows NT 10.0; WOW64; rv:59.0) Gecko/20100101 Firefox/59.0'
+2018-04-21 00:08:07 127.0.0.1 ERROR (1.005) Request for sessionhandler.php with GET(url) Parameter 'sessionKey', wrong value given '989184', should be '754292'
+2018-04-21 00:08:09 127.0.0.1 Request for          index.php Successfull - 'sessionKey'='258461', 'ClientBrowser'='Mozilla/5.0 (Windows NT 10.0; WOW64; rv:59.0) Gecko/20100101 Firefox/59.0'
+2018-04-21 00:08:12 127.0.0.1 Request for sessionhandler.php Successfull - 'sessionKey'='258461', Next valid 'pageID'='3458e978-b3ab-4c34-bb64-97cf613280f7', 'ClientBrowser'='Mozilla/5.0 (Windows NT 10.0; WOW64; rv:59.0) Gecko/20100101 Firefox/59.0'
+2018-04-21 00:08:12 127.0.0.1 Request for           shop.php Successfull - 'sessionKey'='258461', 'pageID'='3458e978-b3ab-4c34-bb64-97cf613280f7', Next valid 'pageID'='c403aae2-2bc3-4ea5-aa05-3a401f21384e', 'ClientBrowser'='Mozilla/5.0 (Windows NT 10.0; WOW64; rv:59.0) Gecko/20100101 Firefox/59.0' 

@@ -1,0 +1,6 @@
+2017-10-30 16:14:37 154.52.129.34 Request for          index.php Successfull - sessionKey='842881'
+2017-10-30 16:14:40 154.52.129.34 Request for sessionhandler.php Successfull - sessionKey='842881'
+2017-10-30 16:14:40 154.52.129.34 Request for           shop.php Successfull - sessionKey='842881'
+2017-10-30 16:14:48 154.52.129.34 ERROR (3.009) Request for cart.php with POST Parameter 'ctl_field27ID3a4fdc1a-198d-41f6-b7a8-638b2dd8c9d4', Value is 0 or not an Integer:''
+2017-10-30 16:14:52 154.52.129.34 ERROR (2.005) Request for shop.php with mismatch between Session Parameter pageID 'e858c74e-3dc1-42dd-9544-073a5f23fe03' and URL Parameter pageID '54564511-0ea7-4f55-931f-72f5519fb6f6', Next valid one will be '1bebcc09-b9e8-4d5c-aacf-ea777527ec8b'
+2017-10-30 16:14:54 154.52.129.34 Request for          index.php Successfull - sessionKey='820393'

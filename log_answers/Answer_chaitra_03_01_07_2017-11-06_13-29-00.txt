@@ -1,0 +1,1 @@
+Runtime settings>Miscellaneous*>Disable both option in Automatic Transaction

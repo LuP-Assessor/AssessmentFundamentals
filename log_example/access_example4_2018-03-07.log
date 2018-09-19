@@ -1,0 +1,3 @@
+2018-03-07 13:26:48 127.0.0.1 Request for          index.php Successfull - 'sessionKey'='622911', 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko'
+2018-03-07 13:26:52 127.0.0.1 Request for sessionhandler.php Successfull - 'sessionKey'='622911', Next valid 'pageID'='c8ec9d47-457a-4bc3-8092-0531e760606e', 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko'
+2018-03-07 13:26:52 127.0.0.1 Request for           shop.php Successfull - 'sessionKey'='622911', 'pageID'='c8ec9d47-457a-4bc3-8092-0531e760606e', Next valid 'pageID'='1a615e4c-0f97-47c9-9f4c-0b4a580402fe', 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko' 

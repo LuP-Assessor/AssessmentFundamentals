@@ -1,0 +1,40 @@
+
+<html>
+<head>
+<title>Ein Soap Client in Javascript</title>
+<!-- Die Soap Klasse einbinden -->
+<script type="text/javascript" src="BlasterSoapClient.js"></script>
+</head>
+<body>
+<script>
+// neue Instanz des Soap Clients erzeugen
+var soapClient = new BlasterSoapClient();
+
+// Webpfad zum SoapServer
+soapClient.transportURI = 'http://127.0.0.1/example5/soap_server.php';
+   
+try{
+    // Parameter Array erzeugen. Da wir keine Parameter in der Funkion des Soap Servers erwarten, hat das Array die länge null.
+    var p = new Array(0);
+    
+    // Aufruf (invoke) der Funktion MySoapClass::getAttributesClass() auf dem SoapServer
+    var attributesClass = soapClient.invoke('getAttributesClass',p);
+    
+    // die Ausgabe sollte [object SOAPPropertyBag] lauten
+    //document.writeln(attributesClass+'<br /><br />');
+    
+    // ausgabe der eigenschaften des Objekts MyAttributesClass
+    //document.writeln('Empfangen:<br />');
+    //document.writeln(attributesClass.attrib1+'<br />');
+    //document.writeln(attributesClass.attrib2+'<br />');
+    //document.writeln(attributesClass.attrib3+'<br />');
+    //document.writeln(attributesClass.attrib4+'<br />');
+    //document.writeln(attributesClass.attrib5+'<br />');
+    
+    
+} catch(e) {
+    alert(e);
+}
+</script>
+</body>
+</html> 

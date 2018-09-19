@@ -1,0 +1,1 @@
+self explaning; Open HP VuGen, Press Strg+N to create a new projects, follow project creation assistent, select protocol "HTTP/HTML", type in Name of project, Finish. 

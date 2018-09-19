@@ -1,0 +1,1 @@
+Runtime settings>Log>Extended Log>Enable all 3 options includes Parameter substitution,Data returned by server and Advanced trace.

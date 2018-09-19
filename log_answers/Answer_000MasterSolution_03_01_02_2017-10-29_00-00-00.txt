@@ -1,0 +1,3 @@
+* Doubbleclick "Runntime Settings" in Project explorer.
+* Submenu "Workflow"
+* Option: Iterations

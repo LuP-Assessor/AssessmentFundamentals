@@ -1,0 +1,1 @@
+Runtime Settings>Pacing>Start new iteration Fixed intervals ,every 15 second(s)  

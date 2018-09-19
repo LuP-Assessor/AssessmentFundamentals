@@ -1,0 +1,7 @@
+2017-10-28 00:49:18 ::1 Request for          index.php Successfull - sessionKey='458875'
+2017-10-28 00:49:20 ::1 Request for sessionhandler.php Successfull - sessionKey='458875' - pageID=''
+2017-10-28 00:49:20 ::1 Request for           shop.php Successfull - sessionKey='458875' - pageID='c5a445fc-fea7-43bc-8510-60cd27272989'
+2017-10-28 00:49:23 ::1 Request for           cart.php Successfull - sessionKey='458875' - pageID='fec59ee4-121f-467c-bc43-c6d8b3e195f0'
+2017-10-28 00:49:24 ::1 Request for           shop.php Successfull - sessionKey='458875' - pageID='aab886dc-9de9-47ac-afc6-c2475548b04c'
+2017-10-28 00:49:26 ::1 Request for           cart.php Successfull - sessionKey='458875' - pageID='f6e0cdd3-1cd6-4fc1-b4fe-fd3d335ebe70'
+2017-10-28 00:49:27 ::1 Request for       checkout.php Successfull - sessionKey='458875' - pageID='a9eaf090-33e6-4989-be30-d6b9a916cb4e'

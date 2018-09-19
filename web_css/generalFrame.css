@@ -1,0 +1,61 @@
+.Div_Headbanner { 
+	padding: 5px;
+	background-color:#FFF9AF;
+	left:10px;    
+	right:10px;      
+	top:10px; 
+	height:90px; 
+	position:absolute; 
+	} 
+
+.Div_DataArea {
+	background-color:#FFFCE5; 
+	left:10px; right:10px; bottom:70px; 
+	overflow: auto;
+	position:absolute; 
+	}
+
+.Div_DataAreaElement {
+	top:0px; 
+	right:0px; 
+	left:0px; 
+	background-color:#FFFCE5;
+	padding-left:6px;
+	padding-bottom:6px;
+	padding-right:6px;
+	margin-right:10px;
+	}
+	
+.Div_Footer { 
+	padding: 5px;             
+	background-color:#FFF9AF; 
+	left:10px; right:10px; bottom:10px; height:40px; 
+	position:absolute;
+	}
+
+.Div_active { 
+	padding: 5px;
+	background-color:#FFE7D3; 
+	position:absolute; 
+	} 
+	
+.Div_deactive { 
+	padding: 5px;
+	background-color:#FFFCE5; 
+	position:absolute; 
+	} 
+			
+.Div_CorpLogos { 
+	position:absolute; 
+	}
+	
+.Img_CorpLogos { 
+	height: 90px;
+	}
+	
+body {
+   background-image: url("../web_pics/pexels-photo-370799.jpeg");
+   background-color: #cccccc;
+}
+
+

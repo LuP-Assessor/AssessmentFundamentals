@@ -1,0 +1,2 @@
+2018-04-07 08:39:39 66.249.64.129 Request for          index.php Successfull - 'sessionKey'='831108', 'ClientBrowser'='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+2018-04-07 08:39:56 66.249.64.159 ERROR (1.005) Request for sessionhandler.php with GET(url) Parameter 'sessionKey', wrong value given '831108', should be ''

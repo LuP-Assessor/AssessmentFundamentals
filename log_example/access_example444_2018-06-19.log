@@ -1,0 +1,7 @@
+2018-06-19 14:25:35 80.253.213.7 Request for index.php Successfull - 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko', 'ClientIP'=80.253.213.7'
+2018-06-19 14:25:36 80.253.213.7 Request for regform.php Successfull - 'pval'='181355', 'type'='RegisterNew', 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko', 'ClientIP'=80.253.213.7'
+2018-06-19 14:25:37 80.253.213.7 Request for regform.php Successfull - 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko'
+2018-06-19 14:25:37 80.253.213.7 Request for regform.php Successfull - 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko'
+2018-06-19 14:25:38 80.253.213.7 Request for regform.php Successfull - 'sessionKey'='', Next valid 'pageID'='', 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko'
+2018-06-19 14:26:04 80.253.213.7 ERROR (1.003) Request for regform.php with GET(url) Parameter 'pval', wrong value given '181355', should be 
+2018-06-19 14:26:20 80.253.213.7 Request for regform.php Successfull - 'sessionKey'='', Next valid 'pageID'='', 'ClientBrowser'='Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'
