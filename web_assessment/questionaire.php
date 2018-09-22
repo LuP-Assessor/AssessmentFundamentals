@@ -116,17 +116,19 @@ $username = "Lattesat";
 $password = "Lattesat2018";
 $dbname = "assessment";
 
-// Create connection
+// Create connection to MQSQLC
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+// Check connection to MQSQLC
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT *, answers.id AS IDD FROM answers INNER JOIN questions ON answers.QuestionID = questions.id WHERE Token like '".$AssToken."' AND Answer = ''";
+
+// Check for assigned questions that are not answered yet
+$sql = "SELECT *, answers.id AS IDD FROM answers INNER JOIN questions ON answers.QuestionID = questions.id WHERE Token like '".$AssToken."' AND Answer = '' LIMIT 1";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    // output data of each row
+    // We found assigned questions that are still not answered by candidate
     while($row = $result->fetch_assoc()) {
 		$Question = $row["Question"];
 		$Answer = $row["Answer"];
@@ -142,37 +144,51 @@ if ($result->num_rows > 0) {
 		echo '<form action="submitanswer.php" method="POST">';
 		echo '<b>Question: </b>'. $Question .'<br>';
 		echo '<input type="hidden" name="AnswerID" value='.$AnswerID.'>';
-		echo '<b>Answer: <b>';
+		echo '<b>Answer: </b><br>';
 		if ($QType=="Free") {
 			echo '<textarea id="Answer" name="Answer" cols="100" rows="20" ></textarea>';
 		} else {
 			if ($AnswerA != "") {
-				echo '<input type="radio" name="Answer" value="'.AnswerA.'">';
+				echo '<input type="radio" name="Answer" value="'.$AnswerA.'">'.$AnswerA.'</input><br>';
 			}
 			if ($AnswerB != "") {
-				echo '<input type="radio" name="Answer" value="'.AnswerB.'">';
+				echo '<input type="radio" name="Answer" value="'.$AnswerB.'">'.$AnswerB.'</input><br>';
 			}
 			if ($AnswerC != "") {
-				echo '<input type="radio" name="Answer" value="'.AnswerC.'">';
+				echo '<input type="radio" name="Answer" value="'.$AnswerC.'">'.$AnswerC.'</input><br>';
 			}
 			if ($AnswerD != "") {
-				echo '<input type="radio" name="Answer" value="'.AnswerD.'">';
+				echo '<input type="radio" name="Answer" value="'.$AnswerD.'">'.$AnswerD.'</input><br>';
 			}
 			if ($AnswerD != "") {
-				echo '<input type="radio" name="Answer" value="'.AnswerD.'">';
+				echo '<input type="radio" name="Answer" value="'.$AnswerD.'">'.$AnswerE.'</input><br>';
 			}
 		}
 		echo '<br><INPUT TYPE = "Submit" Name = "Submit" VALUE = "Submit answer"><br><br>';
 		
     }
 } else {
-    echo "No questions left. Please review your Results:<br><br>";
+    echo "<h2>No questions left.<br>Please review your answers and finish assessment with the link at the bottom of this page.</h2><br>";
+	$sql = "SELECT *, answers.id AS IDD FROM answers INNER JOIN questions ON answers.QuestionID = questions.id WHERE Token like '".$AssToken."' ";
+	$result = $conn->query($sql);
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			
+			echo '<b>Question: </b>'.$row["Question"].'<br>';
+			echo '<b>Answer: </b>';
+			echo $row["Answer"];
+			echo "<div style='text-align:center;border:1px solid;width:170px;background-color:#c6e2ff;' onClick=\"EditAnswer('".$row["Question"]."','".$row["Answer"]."','".$row["QType"]."','".$row["IDD"]."','".$row["id"]."','".$row["AnswerA"]."','".$row["AnswerB"]."','".$row["AnswerC"]."','".$row["AnswerD"]."','".$row["AnswerE"]."')\">Edit answer</div>";
+			echo '<br>';
+		}
+	}
+	echo '<a href="" onClick="FinalSubmit()"><h2>Final submit and quit assessment</h2></a><br><br>';
 }
-?>
 
 
 
 
+/*
 <b>Question: </b>Your customer asked for a delay between VUser iteration. How/where do you implement this?<br>
 <b>Answer: </b>bla<br>
 <div style='text-align:center;border:1px solid;width:170px;background-color:#c6e2ff;' onClick="EditAnswer('Your customer asked for a delay between VUser iteration. How/where do you implement this?','bla','Free','2','8','','','','','')">Edit answer</div><br>
@@ -185,8 +201,8 @@ if ($result->num_rows > 0) {
 <div style='text-align:center;border:1px solid;width:170px;background-color:#c6e2ff;' onClick="EditAnswer('Provided that application under test use default HTTP response codes. What response will you expect by requesting a file / resource that physically not exist on the web server?','File Not Found','Multiple','12','14','File Not Found','HTTP 200','HTTP 400','HTTP 404','HTTP 500')">Edit answer</div><br><br>
 
 <a href="" onClick="FinalSubmit()">Final submit and quit assessment</a>
+*/
 
-<?php
 echo '</div>';
 
 /*------------- Page Footer ----------------*/
