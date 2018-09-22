@@ -153,6 +153,8 @@ if (isset($_SESSION["AdminValidation"])) {
 		echo '</form><br>';
 	}
 echo '<a href="index.php">Go back to candidate token login</a>';
+mysqli_close($conn);
+
 echo '</div>';
 
 /*------------- Page Footer ----------------*/

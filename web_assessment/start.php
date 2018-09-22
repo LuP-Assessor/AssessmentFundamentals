@@ -52,29 +52,32 @@ echo '<b>Assessment max end time: </b>'.$AssMaxEnd.' (local server time)<br>';
 echo '<b>Count of assigned questions: </b>'.$QuestionCount.'<br>';
 
 if ($AssStatus=="Assigned") {
-	// Store Dates and set Assessment to "In Progress"
-	echo '<b>Assessment status: </b>'.$AssStatus.' -> Set to "In Progress"</p><br>';
-	$sql="UPDATE asslist SET StartTime = '".$AssStart."', MaxEndTime = '".$AssMaxEnd."', Status = 'In Progress' WHERE Token like '".$AssToken."';";
-	$result = $conn->query($sql);
-	echo '<a href="questionaire.php">Start questionaire from the beginning</a>';
-} else if ($AssStatus=="In Progress") {
-	echo '<b>Assessment status: </b>'.$AssStatus.'</p><br>';
-	echo '<a href="questionaire.php">Continue already startet questionaire</a>';
-} else {
-	die ("Assessment status (".$AssStatus.") unrecognized! Please contact responsible");
-}
-
-if ($AssStatus=="Assigned") {
 	$QList[0] = 0;
+	// Get count of available questions
+	$result = mysql_query("SELECT * FROM questions", $conn);
+	$AVQCount = mysql_num_rows($result);
 	// Create list of random questions
 	for ($QuestionNr=1; $QuestionNr <= $QuestionCount; $QuestionNr++) {
 		do {
-			$randQuestionID = rand(1,12);
+			$randQuestionID = rand(1,$AVQCount);
 		} while (in_array($randQuestionID,$QList));
 		$QList[$QuestionNr] = $randQuestionID;
 		$sql = "INSERT INTO `answers` (`Token`, `QuestionID`) VALUES ('".$AssToken."', '".$QList[$QuestionNr]."');";
 		$result = $conn->query($sql);
 	}
+	// Store start Date and set Assessment to "In Progress"
+	echo '<b>Assessment status: </b>'.$AssStatus.' -> Set to "In Progress" now</p><br>';
+	$sql="UPDATE asslist SET StartTime = '".$AssStart."', MaxEndTime = '".$AssMaxEnd."', Status = 'In Progress' WHERE Token like '".$AssToken."';";
+	$result = $conn->query($sql);
+	echo '<a href="questionaire.php">Start questionnaire from the beginning</a>';
+} else if ($AssStatus=="In Progress") {
+	echo '<b>Assessment status: </b>'.$AssStatus.'</p><br>';
+	echo '<a href="questionaire.php">Continue already startet questionnaire</a>';
+} else if ($AssStatus=="Finished") {
+	echo '<br>This assessment is already finished and waiting for review. You will be informed once review is finished.';
+} else {
+	echo '<br>';
+	die ("Assessment status (".$AssStatus.") unrecognized! Please contact responsible");
 }
 
 mysqli_close($conn);
