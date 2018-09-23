@@ -22,7 +22,11 @@
 	}
 	
 	function SubmitAnswerEdit() {
-		var newAnswer = document.getElementById("QuestionBoxADivText").value;
+		if (document.getElementById("QuestionBoxADivT").style.visibility == "visible") {
+			var newAnswer = document.getElementById("QuestionBoxADivText").value;
+		} else {
+			var newAnswer =  document.querySelector('input[name = "Answer"]:checked').value;
+		}
 		var AnswerID = document.getElementById("AnswerID").value;
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", 'submiteditanswer.php', true);
@@ -34,8 +38,8 @@
 	
 	function EditAnswer(Question,Answer,QType,AnswerID,QuestionID,AnswerA,AnswerB,AnswerC,AnswerD,AnswerE) {
 		document.getElementById("QuestionBox").style.visibility = "visible";
+		document.getElementById("QuestionBoxQDiv").innerHTML = Question;
 		if(QType=="Free") {
-			document.getElementById("QuestionBoxQDiv").innerHTML = Question;
 			document.getElementById("QuestionBoxADivT").style.visibility = "visible";
 			document.getElementById("QuestionBoxADivM").style.visibility = "hidden";
 			document.getElementById("QuestionBoxADivText").value = Answer;
@@ -118,7 +122,9 @@ if (isset($_SESSION['Token'])) {
 <div id="QuestionBoxADivM" style="visibility:hidden;position:absolute;">Multiple Choice</div>
 </div>
 <!--<div id="QuestionBoxProgressDiv" style="position:absolute;top:423px;left:20px;right:20px;height:30px;border:1px solid;">Progress Bar</div>-->
+
 <div id="QuestionBoxSubmitBtn" style="position:absolute;top:458px;left:20px;right:75%;height:22px;border:1px solid;text-align:center;font-size:20px;background-color:#c6e2ff;" onClick="SubmitAnswerEdit()">Submit Answer</div>
+
 <div id="QuestionBoxCancelBtn" style="position:absolute;top:458px;left:26%;right:45%;height:22px;border:1px solid;text-align:center;font-size:20px;background-color:#c6e2ff;" onClick="CancelEditAnswer()">Cancel</div>
 <input type="hidden" id="AnswerID" name="AnswerID" value="3487">
 <!--<div id="QuestionBoxTestTimer" style="position:absolute;top:458px;left:60%;right:22%;height:22px;border:1px solid;font-size:10px;">Test Timer</div>-->
@@ -177,8 +183,8 @@ if ($result->num_rows > 0) {
 			if ($AnswerD != "") {
 				echo '<input type="radio" name="Answer" value="'.$AnswerD.'">'.$AnswerD.'</input><br>';
 			}
-			if ($AnswerD != "") {
-				echo '<input type="radio" name="Answer" value="'.$AnswerD.'">'.$AnswerE.'</input><br>';
+			if ($AnswerE != "") {
+				echo '<input type="radio" name="Answer" value="'.$AnswerE.'">'.$AnswerE.'</input><br>';
 			}
 		}
 		echo '<br><INPUT TYPE = "Submit" Name = "Submit" VALUE = "Submit answer"><br><br>';

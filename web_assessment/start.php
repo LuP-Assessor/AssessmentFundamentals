@@ -54,8 +54,9 @@ echo '<b>Count of assigned questions: </b>'.$QuestionCount.'<br>';
 if ($AssStatus=="Assigned") {
 	$QList[0] = 0;
 	// Get count of available questions
-	$result = mysql_query("SELECT * FROM questions", $conn);
-	$AVQCount = mysql_num_rows($result);
+	$sql = "SELECT * FROM questions";
+	$result = $conn->query($sql);
+	$AVQCount = $result->num_rows;
 	// Create list of random questions
 	for ($QuestionNr=1; $QuestionNr <= $QuestionCount; $QuestionNr++) {
 		do {
@@ -83,9 +84,7 @@ if ($AssStatus=="Assigned") {
 mysqli_close($conn);
 
 session_start();
-echo $AssToken;
 $_SESSION['Token'] = $AssToken;
-echo $_SESSION['Token'];
 $_SESSION['QuestionCount'] = $QuestionCount;
 
 echo '</div>';
