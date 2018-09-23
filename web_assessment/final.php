@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 }
 
 // Check for assigned questions that are not answered yet
-$sql = "UPDATE asslist SET Status = 'Finished' WHERE `asslist`.`Token` LIKE '".$_GET['Token']."';";
+$sql = "UPDATE asslist SET Status = 'Finished' , FinishedTime = '".date("Y-m-d H:i:s")."' WHERE `asslist`.`Token` LIKE '".$_GET['Token']."';";
 $result = $conn->query($sql);
 mysqli_close($conn);
 

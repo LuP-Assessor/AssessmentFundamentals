@@ -83,7 +83,9 @@ if ($AssStatus=="Assigned") {
 mysqli_close($conn);
 
 session_start();
+echo $AssToken;
 $_SESSION['Token'] = $AssToken;
+echo $_SESSION['Token'];
 $_SESSION['QuestionCount'] = $QuestionCount;
 
 echo '</div>';

@@ -1,8 +1,17 @@
 <script language="JavaScript">
 	function CheckAnswer(){
-		var oldstr = document.getElementById("Answer").value;
-		var newstr = oldstr.replace("'","");
-		document.getElementById("Answer").value = newstr;
+		do {
+			var oldstr = document.getElementById("Answer").value;
+			var newstr = oldstr.replace("'","");
+			document.getElementById("Answer").value = newstr;
+		} while (newstr.indexOf("'") >= 0);
+	}
+	function CheckEditAnswer(){
+		do {
+			var oldstr = document.getElementById("QuestionBoxADivText").value;
+			var newstr = oldstr.replace("'","");
+			document.getElementById("QuestionBoxADivText").value = newstr;
+		} while (newstr.indexOf("'") >= 0);
 	}
 	
 	function FinalSubmit(AssToken) {
@@ -12,18 +21,26 @@
 		}
 	}
 	
+	function SubmitAnswerEdit() {
+		var newAnswer = document.getElementById("QuestionBoxADivText").value;
+		var AnswerID = document.getElementById("AnswerID").value;
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", 'submiteditanswer.php', true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xhr.send("newAnswer="+newAnswer+"&AnswerID="+AnswerID);
+		alert("Your answer has been successfully sent to server!");
+		window.location.href = "questionaire.php";
+	}
+	
 	function EditAnswer(Question,Answer,QType,AnswerID,QuestionID,AnswerA,AnswerB,AnswerC,AnswerD,AnswerE) {
 		document.getElementById("QuestionBox").style.visibility = "visible";
 		if(QType=="Free") {
 			document.getElementById("QuestionBoxQDiv").innerHTML = Question;
 			document.getElementById("QuestionBoxADivT").style.visibility = "visible";
-			//document.getElementById("QuestionBoxADivText").style.visibility = "visible";
 			document.getElementById("QuestionBoxADivM").style.visibility = "hidden";
 			document.getElementById("QuestionBoxADivText").value = Answer;
 		} else {
-			//document.getElementById("QuestionBoxADivText").value = Answer;
 			document.getElementById("QuestionBoxADivT").style.visibility = "hidden";
-			//document.getElementById("QuestionBoxADivText").style.visibility = "hidden";
 			document.getElementById("QuestionBoxADivM").style.visibility = "visible";
 			var DynHTML = "";
 			if (AnswerA != "") {
@@ -63,11 +80,11 @@
 			}
 			document.getElementById("QuestionBoxADivM").innerHTML = DynHTML;
 		}
+		document.getElementById("AnswerID").value = AnswerID;
 	}
 	
 	function CancelEditAnswer() {
 		document.getElementById("QuestionBox").style.visibility = "hidden";
-		//document.getElementById("QuestionBoxADivText").style.visibility = "hidden";
 		document.getElementById("QuestionBoxADivT").style.visibility = "hidden";
 		document.getElementById("QuestionBoxADivM").style.visibility = "hidden";
 	}
@@ -78,7 +95,7 @@ session_start();
 echo '<link rel="stylesheet" type="text/css" href="../web_css/generalFrame.css" media="screen" />';		// Include general CSS
 
 /*------------- Head Banner ----------------*/
-include '../web_templates/template_headBanner.php';			// Include function getClientIP from ../web_templates/template_getClientIP.php
+include '../web_templates/template_headBanner.php';
 
 /*------------- Data Area ----------------*/
 echo '<div id="" class="Div_DataArea Div_deactive" style="top:120px;">';
@@ -95,16 +112,17 @@ if (isset($_SESSION['Token'])) {
 <div id="QuestionBoxQDiv" style="position:absolute;top:66px;left:20px;right:20px;height:140px;border:1px solid;">text inside</div>
 <div id="QuestionBoxAHeadline" style="position:absolute;top:220px;left:20px;right:20px;height:40px;border:0px solid;text-align:center;font-size:25px;padding-top:5px;">Answer</div>
 <div id="QuestionBoxADiv" style="position:absolute;top:266px;left:20px;right:20px;height:145px;border:1px solid;">
-<div id="QuestionBoxADivT" style="border:3px solid;position:absolute;left:0px;right:0px;height:100%">
-<textarea id="QuestionBoxADivText" name="Answer" style="height:100%;width:100%;-moz-box-sizing: border-box;" ></textarea>
+<div id="QuestionBoxADivT" style="border:0px solid;position:absolute;left:0px;right:0px;height:100%">
+<textarea id="QuestionBoxADivText" name="Answer" style="height:100%;width:100%;-moz-box-sizing: border-box;" onChange="CheckEditAnswer()"></textarea>
 </div>
 <div id="QuestionBoxADivM" style="visibility:hidden;position:absolute;">Multiple Choice</div>
 </div>
-<div id="QuestionBoxProgressDiv" style="position:absolute;top:423px;left:20px;right:20px;height:30px;border:1px solid;">Progress Bar</div>
-<div id="QuestionBoxSubmitBtn" style="position:absolute;top:458px;left:20px;right:75%;height:22px;border:1px solid;text-align:center;font-size:20px;background-color:#c6e2ff;">Submit Answer</div>
+<!--<div id="QuestionBoxProgressDiv" style="position:absolute;top:423px;left:20px;right:20px;height:30px;border:1px solid;">Progress Bar</div>-->
+<div id="QuestionBoxSubmitBtn" style="position:absolute;top:458px;left:20px;right:75%;height:22px;border:1px solid;text-align:center;font-size:20px;background-color:#c6e2ff;" onClick="SubmitAnswerEdit()">Submit Answer</div>
 <div id="QuestionBoxCancelBtn" style="position:absolute;top:458px;left:26%;right:45%;height:22px;border:1px solid;text-align:center;font-size:20px;background-color:#c6e2ff;" onClick="CancelEditAnswer()">Cancel</div>
-<div id="QuestionBoxTestTimer" style="position:absolute;top:458px;left:60%;right:22%;height:22px;border:1px solid;font-size:10px;">Test Timer</div>
-<div id="QuestionBoxQuestionTimer" style="position:absolute;top:458px;left:80%;right:20px;height:22px;border:1px solid;font-size:10px;">Question Timer</div>
+<input type="hidden" id="AnswerID" name="AnswerID" value="3487">
+<!--<div id="QuestionBoxTestTimer" style="position:absolute;top:458px;left:60%;right:22%;height:22px;border:1px solid;font-size:10px;">Test Timer</div>-->
+<!--<div id="QuestionBoxQuestionTimer" style="position:absolute;top:458px;left:80%;right:20px;height:22px;border:1px solid;font-size:10px;">Question Timer</div>-->
 </div>
 
 <?php
@@ -130,6 +148,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
 		$Question = $row["Question"];
 		$Answer = $row["Answer"];
+		$EditAnswer = $row["EditAnswer"];
 		$QType = $row["QType"];
 		$AnswerID = $row["IDD"];
 		$QuestionID = $row["id"];
@@ -144,7 +163,7 @@ if ($result->num_rows > 0) {
 		echo '<input type="hidden" name="AnswerID" value='.$AnswerID.'>';
 		echo '<b>Answer: </b><br>';
 		if ($QType=="Free") {
-			echo '<textarea id="Answer" name="Answer" cols="100" rows="20" ></textarea>';
+			echo '<textarea id="Answer" name="Answer" cols="100" rows="20" onChange="CheckAnswer()"></textarea>';
 		} else {
 			if ($AnswerA != "") {
 				echo '<input type="radio" name="Answer" value="'.$AnswerA.'">'.$AnswerA.'</input><br>';
@@ -175,8 +194,14 @@ if ($result->num_rows > 0) {
 			
 			echo '<b>Question: </b>'.$row["Question"].'<br>';
 			echo '<b>Answer: </b>';
-			echo $row["Answer"];
-			echo "<div style='text-align:center;border:1px solid;width:170px;background-color:#c6e2ff;' onClick=\"EditAnswer('".$row["Question"]."','".$row["Answer"]."','".$row["QType"]."','".$row["IDD"]."','".$row["id"]."','".$row["AnswerA"]."','".$row["AnswerB"]."','".$row["AnswerC"]."','".$row["AnswerD"]."','".$row["AnswerE"]."')\">Edit answer</div>";
+			if ($row["EditAnswer"]!="") {
+				echo $row["EditAnswer"];
+				$AnswerText=$row["EditAnswer"];
+			} else {
+				echo $row["Answer"];
+				$AnswerText=$row["Answer"];
+			}
+			echo "<div style='text-align:center;border:1px solid;width:170px;background-color:#c6e2ff;' onClick=\"EditAnswer('".$row["Question"]."','".$AnswerText."','".$row["QType"]."','".$row["IDD"]."','".$row["id"]."','".$row["AnswerA"]."','".$row["AnswerB"]."','".$row["AnswerC"]."','".$row["AnswerD"]."','".$row["AnswerE"]."')\">Edit answer</div>";
 			echo '<br>';
 		}
 	}
