@@ -87,6 +87,10 @@
 		document.getElementById("AnswerID").value = AnswerID;
 	}
 	
+	function SeqAskQuestion() {
+		alert("Hieeeer");
+	}
+	
 	function CancelEditAnswer() {
 		document.getElementById("QuestionBox").style.visibility = "hidden";
 		document.getElementById("QuestionBoxADivT").style.visibility = "hidden";
@@ -163,7 +167,10 @@ if ($result->num_rows > 0) {
 		$AnswerC = $row["AnswerC"];
 		$AnswerD = $row["AnswerD"];
 		$AnswerE = $row["AnswerE"];
+?>
+		<!--<script language="JavaScript">SeqAskQuestion();</script>-->
 
+<?php
 		echo '<form action="submitanswer.php" method="POST">';
 		echo '<b>Question: </b>'. $Question .'<br>';
 		echo '<input type="hidden" name="AnswerID" value='.$AnswerID.'>';
